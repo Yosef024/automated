@@ -16,7 +16,7 @@ def format_number(number):
         raise ValueError(f"Invalid phone number format: {number}")
 
 # هان بتحطو اسم الفايل اللي مخزنين فيه الداتا
-dataset = pd.read_csv('data.csv')
+dataset = pd.read_csv('جدول بيانات بدون عنوان - الورقة1 (1).csv')
 
 # هان بدلوهم باسم الصف او العمود اللي عندكم
 names = dataset['الاسم'].values
@@ -32,12 +32,13 @@ failed_numbers = []
 for name, number in zip(names, formatted_numbers):
     try:
         message = message_template.format(name=name)  # Customize the message
-        kit.sendwhatmsg_instantly(number, message, 15, tab_close=True)  # Sends instantly
+        kit.sendwhatmsg_instantly(number, message, 20, tab_close=True)  # Sends instantly
         print(f"Message sent to {name} ({number})")
+
     except Exception as e:
         print(f"Failed to send message to {name} ({number}): {e}")
         failed_numbers.append(number)
-    time.sleep(10)
+    time.sleep(2)
 
 if failed_numbers:
     print("\nFailed to send messages to the following numbers:")
